@@ -10,18 +10,19 @@
 
 using  namespace  std;
 
-int vybor()
+int vybor(int max_num)
 {
-	string buf;
+	string buf = "no number";
 
-	cout << "Ваш выбор: " << endl;
-	fflush(stdin);
-	cin >> buf;
-	fflush(stdin);
-	if(isdigit(buf[0]))
-		return buf.at(0) - 48;
-	else
-		return 0;
+	while( !( isdigit(buf[0]) && buf.at(0) - 48 <= max_num ))
+	{
+		cout << "Ваш выбор: " << endl;
+		fflush(stdin);
+		cin >> buf;
+		fflush(stdin);
+	}
+
+	return buf.at(0) - 48;
 }
 
 int main()
@@ -35,9 +36,8 @@ int main()
         cout << "5. Сохранения исходных данных в файлах на магнитных дисках" << endl;
         cout << "6. Восстановления исходных данных с файлов на магнитных дисках" << endl;
 
-	int var = vybor();
-
-
+	int var = 0;
+	var = vybor(6);
 
 	return 0;
 }
