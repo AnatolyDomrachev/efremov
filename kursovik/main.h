@@ -1,11 +1,10 @@
-		if( isdigit(buf[0]) && buf.at(0) - 48 <= max_num && buf.length() == 1 );
-void vyvod();
+void reshenie();
+void reshenie_1();
+void reshenie_2();
 void sohr();
 void vosst();
 void vvod();
 void vvod_1();
 void vvod_2();
-void reshenie();
-void reshenie_1();
-void reshenie_2();
-int main();
+int vybor(int max_num);
+void vyvod();

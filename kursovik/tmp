@@ -1,0 +1,1 @@
+void (*operations[])() = {vvod, vyvod, reshenie, sohr, vosst};
