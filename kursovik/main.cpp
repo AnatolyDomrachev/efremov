@@ -6,29 +6,13 @@
  */
 
 #include <iostream> 
-#include <fstream> 
+#include "main.h"
 
 using  namespace  std;
-
-int vybor(int max_num)
-{
-	string buf = "no number";
-
-	while( !( isdigit(buf[0]) && buf.at(0) - 48 <= max_num ))
-	{
-		cout << "Ваш выбор: " << endl;
-		fflush(stdin);
-		cin >> buf;
-		fflush(stdin);
-	}
-
-	return buf.at(0) - 48;
-}
 
 int main()
 {
         cout << "ГЛАВНОЕ МЕНЮ" << endl;
-
         cout << "1. Формирования исходных данных" << endl;
         cout << "2. Вывода исходных данных на экран пользователя" << endl;
         cout << "3. Решения задачи различными способами" << endl;
@@ -38,6 +22,7 @@ int main()
 
 	int var = 0;
 	var = vybor(6);
+	cout << var<<endl;
 
 	return 0;
 }
