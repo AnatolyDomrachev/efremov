@@ -8,3 +8,4 @@ void vvod_1();
 void vvod_2();
 int vybor(int max_num);
 void vyvod();
+void nothing();

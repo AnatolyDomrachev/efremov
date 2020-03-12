@@ -9,7 +9,16 @@ using  namespace  std;
 
 void vvod()
 {
-	cout << "vvod";
+	void (*operations[])() = {vvod_1, vvod_2, nothing};
+
+	cout << "1. Ручной ввод исходных данных пользователем с клавиатуры;" << endl;
+	cout << "2. Генерация основных  объемов исходных данных случайным образом." << endl;
+	cout << "3. Возврат в главное меню"<< endl;
+
+	int var;
+	var = vybor(3);
+	operations[var-1]();
+
 }
 
 void vvod_1()
@@ -17,4 +26,6 @@ void vvod_1()
 
 void vvod_2()
 {}
+
+void nothing() {}
 
