@@ -27,5 +27,4 @@ void vvod_1()
 void vvod_2()
 {}
 
-void nothing() {}
 

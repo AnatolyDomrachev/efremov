@@ -2,8 +2,23 @@
 //        5.1. Эвристическое решение;
 //        5.2. Полный перебор множества допустимый решений.
 
+#include <iostream> 
+#include "main.h"
+
+using  namespace  std;
+
 void reshenie()
-{}
+{
+	void (*operations[])() = {reshenie_1, reshenie_2, nothing};
+
+	cout << "1. Эвристическое решение;" << endl;
+	cout << "2. Полный перебор множества допустимый решений." << endl;
+	cout << "3. Возврат в главное меню"<< endl;
+
+	int var;
+	var = vybor(3);
+	operations[var-1]();
+}
 
 void reshenie_1()
 {}

@@ -7,14 +7,13 @@
 
 #include <iostream> 
 #include "main.h"
+#include <stdlib.h>
 
 using  namespace  std;
 
-void end() {exit(0);}
-
 int main()
 {
-	void (*operations[])() = {vvod, vyvod, reshenie, sohr, vosst, end};
+	void (*operations[])() = {vvod, vyvod, reshenie, sohr, vost, end};
 
 	while(true)
 	{
@@ -24,7 +23,7 @@ int main()
 		cout << "3. Решения задачи различными способами" << endl;
 		cout << "4. Сохранения исходных данных в файлах на магнитных дисках" << endl;
 		cout << "5. Восстановления исходных данных с файлов на магнитных дисках" << endl;
-		cout << "6. Завкршение работы" << endl;
+		cout << "6. Завeршение работы" << endl;
 
 		int var;
 		var = vybor(6);
@@ -33,3 +32,6 @@ int main()
 
 	return 0;
 }
+
+void end() {exit(0);}
+void nothing() {}

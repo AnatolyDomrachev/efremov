@@ -9,7 +9,7 @@ int vybor(int max_num)
 	while(true)
 	{
 		cout << "Ваш выбор: " << endl;
-		fflush(stdin);
+		//fflush(stdin);
 		cin >> buf;
 		if( isdigit(buf[0]) && buf.at(0) - 48 <= max_num && buf.length() == 1 )
 			break;
