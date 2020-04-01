@@ -7,6 +7,9 @@
 
 using  namespace  std;
 
+int N;
+double ** T;
+
 void vvod()
 {
 	void (*operations[])() = {vvod_1, vvod_2, nothing};
@@ -22,7 +25,21 @@ void vvod()
 }
 
 void vvod_1()
-{}
+{
+	cout << "Введите количество деталей"<< endl;
+	N = vybor(20);
+
+	T = new double*[N];
+	for (int i=0; i<N; i++)
+		T[i] = new double[N];
+
+	for (int i=0; i<N; i++)
+		for (int j=0; j<N; j++)
+		{
+			cout << "Введите t["<<i+1<<"]["<<j+1<<"]"<< endl;
+			cin >> T[i][j];
+		}
+}
 
 void vvod_2()
 {}
