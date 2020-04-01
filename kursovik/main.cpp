@@ -11,6 +11,9 @@
 
 using  namespace  std;
 
+int N;
+double ** T;
+
 int main()
 {
 	void (*operations[])() = {vvod, vyvod, reshenie, sohr, vost, end};

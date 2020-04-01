@@ -1,3 +1,9 @@
+#ifndef _ONE_H_
+#define _ONE_H_
+
+extern int N;
+extern double ** T;
+
 void end();
 void nothing();
 void reshenie();
@@ -15,3 +21,5 @@ void vvod_2();
 int vybor(int max_num);
 void vyvod();
 void vyvod_1();
+
+#endif

@@ -7,9 +7,6 @@
 
 using  namespace  std;
 
-int N;
-double ** T;
-
 void vvod()
 {
 	void (*operations[])() = {vvod_1, vvod_2, nothing};

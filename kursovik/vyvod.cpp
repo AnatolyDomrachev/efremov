@@ -17,5 +17,7 @@ void vyvod()
 }
 
 void vyvod_1()
-{}
+{
+	cout<<endl << N << endl;
+}
 
