@@ -4,6 +4,8 @@
 
 #include <iostream> 
 #include "main.h"
+#include <random>
+#include <ctime>
 
 using  namespace  std;
 
@@ -32,13 +34,29 @@ void vvod_1()
 
 	for (int i=0; i<N; i++)
 		for (int j=0; j<N; j++)
-		{
-			cout << "Введите t["<<i+1<<"]["<<j+1<<"]"<< endl;
-			cin >> T[i][j];
-		}
+			if(i != j)
+			{
+				cout << "Введите t["<<i+1<<"]["<<j+1<<"]"<< endl;
+				cin >> T[i][j];
+			}
 }
 
 void vvod_2()
-{}
+{
+	srand(time(0));   //без этого будут одни и те же значения
+	cout << "Введите количество деталей"<< endl;
+	N = vybor(20);
+
+	T = new double*[N];
+	for (int i=0; i<N; i++)
+		T[i] = new double[N];
+
+	for (int i=0; i<N; i++)
+		for (int j=0; j<N; j++)
+			if(i != j)
+			{
+				T[i][j] = rand()%10+1; //рандом от 1 до 10
+			}
+}
 
 

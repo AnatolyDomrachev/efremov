@@ -21,7 +21,10 @@ void reshenie()
 }
 
 void reshenie_1()
-{}
+{
+	//удалим лишние переходы
+	
+}
 
 void reshenie_2()
 {}
