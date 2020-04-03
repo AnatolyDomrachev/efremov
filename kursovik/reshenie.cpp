@@ -5,6 +5,7 @@
 #include <iostream> 
 #include <vector>
 #include "main.h"
+#include <algorithm>
 
 using  namespace  std;
 
@@ -46,29 +47,52 @@ void reshenie_1()
 			}
 	result.push_back(imin);
 	result.push_back(jmin);
+	
+	for(auto x: result )
+		cout << x+1 << " ";
+	cout << endl;
 
+	// append other
 	while( result.size() != N )
 	{
-		begin = result.begin();
-		end = result.end();
 		//find i not in result
 		for (int i=0; i<N; i++)
-			if(find(begin,end,i) == end)
+			if(find(result.begin(),result.end(),i) == result.end())
 			{
 				imin = i;
 				break;
 			}
 
-		tmin = T[imin][*begin];
+		tmini = T[imin][result.front()];
 
 		for (int i=imin; i<N; i++)
-			if(i != j && find(begin,end,i) == end; && T[i][*begin] < tmini)
+			if(i != result.front() && find(result.begin(),result.end(),i) == result.end() && T[i][result.front()] < tmini)
 			{
-				tmini = T[i][*begin];
+				tmini = T[i][result.front()];
 				imin = i;
 			}
 
-		result.insert(begin, imin);
+		//for j
+		for (int j=0; j<N; j++)
+			if(find(result.begin(),result.end(),j) == result.end())
+			{
+				jmin = j;
+				break;
+			}
+
+		tminj = T[result.back()][jmin];
+
+		for (int j=jmin; j<N; j++)
+			if(j != result.back() && find(result.begin(),result.end(),j) == result.end() && T[result.back()][j] < tminj)
+			{
+				tminj = T[result.front()][j];
+				jmin = j;
+			}
+
+		if(tmini < tminj)
+			result.insert(result.begin(), imin);
+		else
+			result.push_back(jmin);
 /*
 		tminj = j;
 		for (int j=0; j<N; j++)
