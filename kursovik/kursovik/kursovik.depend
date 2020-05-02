@@ -1,0 +1,35 @@
+# depslib dependency file v1.0
+1588402955 source:/home/adom/efremov/kursovik/kursovik/reshenie.cpp
+	<iostream>
+	<vector>
+	"main.h"
+	<algorithm>
+
+1588406175 /home/adom/efremov/kursovik/kursovik/main.h
+
+1588402955 source:/home/adom/efremov/kursovik/kursovik/sohr.cpp
+	<iostream>
+	"main.h"
+
+1588402955 source:/home/adom/efremov/kursovik/kursovik/vost.cpp
+	<iostream>
+	"main.h"
+
+1588406602 source:/home/adom/efremov/kursovik/kursovik/vvod.cpp
+	<iostream>
+	"main.h"
+	<random>
+	<ctime>
+
+1588402955 source:/home/adom/efremov/kursovik/kursovik/vyvod.cpp
+	<iostream>
+	"main.h"
+
+1588405181 source:/home/adom/efremov/kursovik/kursovik/main.cpp
+	<iostream>
+	"main.h"
+	<stdlib.h>
+
+1588405854 source:/home/adom/efremov/kursovik/kursovik/vybor.cpp
+	<iostream>
+
