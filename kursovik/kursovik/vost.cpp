@@ -4,26 +4,41 @@
 
 #include <iostream> 
 #include "main.h"
+#include <fstream>
 
 using  namespace  std;
 
 void vost()
 {
-	void (*operations[])() = {vost_1, vost_2, nothing};
+	char fname[50];
+	cout << "enfer fmane: ";
+	cin >> fname;       
+	ifstream file;
+	file.open (fname);
+	file >> N ;
+	cout << N << endl;
+	T = new double*[N];
+	for (int i=0; i<N; i++)
+		T[i] = new double[N];
 
-	cout << "1. Из текстовых файлах;" << endl;
-	cout << "2. Из типизированных двоичных файлах;" << endl;
-	cout << "3. Возврат в главное меню"<< endl;
+	char buf[20];
+	for (int i=0; i<N; i++)
+		for (int j=0; j<N; j++)
+			if(i != j)
+			{
+				file >> buf;
+				file >> T[i][j];
+			}
 
-	int var;
-	var = vybor(3);
-	operations[var-1]();
+	/*
+	for (int i=0; i<N; i++)
+		for (int j=0; j<N; j++)
+			if(i != j)
+				file << "t["<<i+1<<"]["<<j+1<<"]\t"<< T[i][j] << endl;
+	*/
+	file.close();
+
+
 }
-
-void vost_1()
-{}
-
-void vost_2()
-{}
 
 
