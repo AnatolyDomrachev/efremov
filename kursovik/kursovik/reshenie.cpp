@@ -6,6 +6,7 @@
 #include <vector> //чтобы использовать vector
 #include "main.h"
 #include <algorithm> //чтобы использовать алгоритмы vector
+#include <string.h>
 
 using  namespace  std;
 
@@ -111,6 +112,72 @@ void reshenie_1()
 	}
 }
 
+int factorial()
+{
+	  int res = 1;
+	  for (int i = 1; i <= N; i++) {
+		res = res * i;
+	  }
+
+	  return res;
+}
+
+bool NextSet(int *a, int n)
+{
+  int j = n - 2;
+  while (j != -1 && a[j] >= a[j + 1]) j--;
+  if (j == -1)
+    return false; // больше перестановок нет
+  int k = n - 1;
+  while (a[j] >= a[k]) k--;
+  swap(a[j], a[k]);
+  int l = j + 1, r = n - 1; // сортируем оставшуюся часть последовательности
+  while (l<r)
+    swap(a[l++], a[r--]);
+  return true;
+}
+
+int dtime(int* a)
+{
+	int s = 0;
+	for (int i = 0; i < N-1; i++)
+	{
+		int d1,d2;
+		d1 = a[i];
+		d2 = a[i+1];
+		s += T[d1][d2];
+	}
+
+	return s;
+}
+
 void reshenie_2()
-{}
+{
+	int* a = new int[N];
+	int* amin = new int[N];
+
+	for (int i = 0; i < N; i++)
+		a[i] = i;
+
+	int tmin = dtime(a);
+	memcpy(amin, a, N*sizeof(int));
+
+	while( NextSet(a, N))
+	{
+		for (int i = 0; i < N; i++)
+			cout << a[i]+1 << " ";
+		cout << " : " <<  dtime(a) << endl;
+		
+		if(dtime(a) < tmin)
+		{
+			tmin = dtime(a);
+			memcpy(amin, a, N*sizeof(int));
+		}	
+	}
+
+	for (int i = 0; i < N; i++)
+		cout << amin[i] + 1 << " ";
+
+	cout << endl;
+}
 
