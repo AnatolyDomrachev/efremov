@@ -97,23 +97,17 @@ void next()
 				//!in_result(c2)
 				&&
 				!cross(c2)
-			)
+				)
 		{
-			result.push_back(c2);
 			new_hod = true;
-			next();
+			break;
 		}
 	}
 
-	if(!new_hod)
+	if(new_hod)
 	{
-		if(result.size() > max_num)
-		{
-			max_result = result;
-			max_num = result.size();
-		}
-		else
-			result.pop_back();
+		result.push_back(c2);
+		next();
 	}
 }
 
@@ -130,7 +124,7 @@ int main()
 	result.push_back(coord);
 	next();
 
-	for(auto c: max_result )
+	for(auto c: result )
 		cout << c.x << " " << c.y << endl;
 	return 0;
 }

@@ -111,9 +111,8 @@ void next()
 		{
 			max_result = result;
 			max_num = result.size();
+			result.clear();
 		}
-		else
-			result.pop_back();
 	}
 }
 

@@ -19,9 +19,9 @@ int vars[][2] = {{1,2},{1,-2},{2,1},{2,-1},{-1,-2},{-1,2},{-2,-1},{-2,1}};
 vector<struct xy> result;	
 vector<struct xy> max_result;	
 int max_num = 0;
-struct xy coord;
+struct xy coord, c1, c2;
 
-bool in_result(struct xy c2)
+bool in_result()
 {
 	for(auto c: result )
 		if( c.x == c2.x && c.y == c2.y)
@@ -54,9 +54,9 @@ bool cross2(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4)
     return false;
 }
 
-bool cross(struct xy c2)
+bool cross()
 {
-	struct xy c1 = result.back();
+	c1 = result.back();
 	int maxi = result.size()-2;
 
 	for(int i=0; i<maxi ; i++)
@@ -75,10 +75,7 @@ void next()
 		cout << c.x << " " << c.y << endl;
 	cout << endl;
 
-	struct xy c1;
-	struct xy c2;
 	bool new_hod = false;
-
 	c1 = result.back();
 
 	for(int i =0; i<8 ; i++)
@@ -111,9 +108,8 @@ void next()
 		{
 			max_result = result;
 			max_num = result.size();
-		}
-		else
 			result.pop_back();
+		}
 	}
 }
 
