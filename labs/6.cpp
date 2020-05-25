@@ -17,6 +17,8 @@ struct xy
 const int N = 6;
 int vars[][2] = {{1,2},{1,-2},{2,1},{2,-1},{-1,-2},{-1,2},{-2,-1},{-2,1}};
 vector<struct xy> result;	
+vector<struct xy> max_result;	
+int max_num = 0;
 struct xy coord;
 
 bool in_result(struct xy c2)
@@ -55,8 +57,9 @@ bool cross2(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4)
 bool cross(struct xy c2)
 {
 	struct xy c1 = result.back();
+	int maxi = result.size()-2;
 
-	for(int i=0; i<result.size()-1; i++)
+	for(int i=0; i<maxi ; i++)
 	{
 		if(cross2(result[i].x , result[i].y , result[i+1].x , result[i+1].y , c1.x, c1.y, c2.x, c2.y))
 			return true;
@@ -90,8 +93,8 @@ void next()
 				c2.y < N 
 				&&
 				c2.y >= 0 
-				&&
-				!in_result(c2)
+				//&&
+				//!in_result(c2)
 				&&
 				!cross(c2)
 				)
