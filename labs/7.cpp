@@ -67,28 +67,25 @@ void create_src_trees(struct node* tree1, struct node* tree2, int a[], int b[] )
 	tree2->right->right->right = NULL;
 }
 
-void add_new_data(int data, struct node* tree )
+void add_new_data(int data, struct node** tree )
 {
-	if(!tree)
+	if(!*tree)
 	{
-		tree = new struct node;
-		tree->left = NULL;
-		tree->right = NULL;
-		tree->data = data;
+		(*tree) = new struct node;
+		(*tree)->left = NULL;
+		(*tree)->right = NULL;
+		(*tree)->data = data;
 	}
 	else
-		if(data < tree->data)
-			add_new_data(data, tree->left );
+		if(data < (*tree)->data)
+			add_new_data(data, &((*tree)->left) );
 		else
-			add_new_data(data, tree->right );
+			add_new_data(data, &((*tree)->right) );
 }
 
-void add_new_tree(struct node* src_tree, struct node* dst_tree )
+void add_new_tree(struct node* src_tree, struct node** dst_tree )
 {
-	if(dst_tree->left == src_tree)
-		dst_tree->left = NULL;
-	else
-		add_new_data(src_tree->data, dst_tree );
+	add_new_data(src_tree->data, dst_tree );
 
 	if(src_tree->left)
 		add_new_data(src_tree->left->data, dst_tree);
@@ -103,15 +100,12 @@ int main()
 
 	struct node* tree1 = new struct node;
 	struct node* tree2 = new struct node;
-	struct node* tree3 = new struct node;;
+	struct node* tree3 = NULL;
 
 	create_src_trees(tree1, tree2, a, b);
 
-	tree3->data = tree1->data;
-	tree3->left = tree1;
-
-	add_new_tree(tree1, tree3);
-	add_new_tree(tree2, tree3);
+	add_new_tree(tree1, &tree3);
+	add_new_tree(tree2, &tree3);
 
 	cout << "Tree 1" << endl;
 	print(tree1);
