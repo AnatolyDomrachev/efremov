@@ -47,7 +47,7 @@ void create_src_tree(struct node* tree, int a[])
 
 void add_new_data(int data, struct node** tree )
 {
-	if(!*tree)
+	if(!*tree) // если указывает на NULL
 	{
 		(*tree) = new struct node;
 		(*tree)->left = NULL;
@@ -65,16 +65,16 @@ void add_new_tree(struct node* src_tree, struct node** dst_tree )
 {
 	add_new_data(src_tree->data, dst_tree );
 
-	if(src_tree->left)
-		add_new_tree(src_tree->left, dst_tree);
+	if(src_tree->left) // если существует левый узел, то добавить его
+		add_new_tree(src_tree->left, dst_tree);// для правого
 	if(src_tree->right)
 		add_new_tree(src_tree->right, dst_tree);
 }
 
 int main()
 {
-	int a[] = {1,2,3,4,5,6,7};
-	int b[] = {2,4,6,8,10,12,14};
+	int a[] = {8,2,3,6,5,4,7};
+	int b[] = {8,9,6,0,60,92,84};
 
 	struct node* tree1 = new struct node;
 	struct node* tree2 = new struct node;
@@ -83,7 +83,7 @@ int main()
 	create_src_tree(tree1, a);
 	create_src_tree(tree2, b);
 
-	add_new_tree(tree1, &tree3);
+	add_new_tree(tree1, &tree3); //Передаём указатель на указатель так как содержимое этой ячейки памяти будет меняться
 	add_new_tree(tree2, &tree3);
 
 	cout << "Tree 1" << endl;

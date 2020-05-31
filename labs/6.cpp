@@ -28,57 +28,52 @@ int vars[][2] = {
 vector<struct xy> result;	
 vector<struct xy> max_result;	
 int max_num = 0;
-struct xy coord;
 
-bool obsh_tochka(struct xy c2)
+bool cross2(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4) 
 {
-	for(auto c: result )
-		if( c.x == c2.x && c.y == c2.y)
-			return true;
-
-	return false;
+    
+    double Ua, Ub, numerator_a, numerator_b, denominator;
+    
+    denominator=(y4-y3)*(x1-x2)-(x4-x3)*(y1-y2);
+    if (denominator == 0){
+        if ( (x1*y2-x2*y1)*(x4-x3) - (x3*y4-x4*y3)*(x2-x1) == 0 && (x1*y2-x2*y1)*(y4-y3) - (x3*y4-x4*y3)*(y2-y1) == 0)
+		return true;
+    }
+    else{
+        numerator_a=(x4-x2)*(y4-y3)-(x4-x3)*(y4-y2);
+        numerator_b=(x1-x2)*(y4-y2)-(x4-x2)*(y1-y2);
+        Ua=numerator_a/denominator;
+        Ub=numerator_b/denominator;
+	if(Ua >=0 && Ua <=1 && Ub >=0 && Ub <=1)
+		return true;
+    }
+    return false;
 }
 
-// расстояние между средними точками отрезков ходов должно быть меньше одного. тогда пересекаются
-bool litle_rast_sred(struct xy c2)
+bool cross(struct xy c2)
 {
 	struct xy c1 = result.back();
-<<<<<<< HEAD
-	int maxi = result.size()-2;
-=======
-	double sc1x;
-	double sc1y;
-	double rast;
-	double sc2x = (c2.x + c1.x)/2;
-	double sc2y = (c2.y + c1.y)/2;
->>>>>>> parent of 0c1d968... 1
+	int maxi = result.size()-2; // -2 убираем из рассмотрения сам новый ход и тот ход, который пережд ним
 
 	for(int i=0; i<maxi ; i++)
 	{
-		sc1x = (result[i].x + result[i+1].x ) / 2;
-		sc1y = (result[i].y + result[i+1].y ) / 2;
-		rast = sqrt(pow(sc2x-sc1x,2) + pow(sc2y-sc1y,2));
-		if(rast < 1)
+		if(cross2(result[i].x , result[i].y , result[i+1].x , result[i+1].y , c1.x, c1.y, c2.x, c2.y))
 			return true;
 	}
 
 	return false;
 }
 
-bool cross(struct xy c2)
-{
-	if(obsh_tochka(c2) || litle_rast_sred(c2))
-		return true;
-	else
-		return false;
-}
-
 void next()
 {
+
+	for(auto c: result )
+		cout << c.x << " " << c.y << endl;
+	cout << endl;
+
 	struct xy c1;
 	struct xy c2;
 	bool new_hod;
-
 
 	for(int i =0; i<8 ; i++)
 	{
@@ -89,16 +84,13 @@ void next()
 		if(
 				c2.x < N 
 				&&
+				c2.x >= 0 
+				&&
 				c2.y < N 
 				&&
-<<<<<<< HEAD
 				c2.y >= 0 
-				//&&
-				//!in_result(c2)
 				&&
-=======
->>>>>>> parent of 0c1d968... 1
-				!cross(c2)
+				!cross(c2) // Проверка что новый ход не образует пересечений с уже имеющимися
 			)
 		{
 			result.push_back(c2);
@@ -107,7 +99,7 @@ void next()
 		}
 	}
 
-	if(!new_hod)
+	if(!new_hod) // Новый ход без пересечений сделать невозможно
 	{
 		if(result.size() > max_num)
 		{
@@ -122,6 +114,7 @@ void next()
 int main()
 {
 	char buf[2];
+	struct xy coord;
 
 	cout << "Введите начальное расположение коня на доске: ";
 	cin >> buf;

@@ -28,16 +28,6 @@ int vars[][2] = {
 vector<struct xy> result;	
 vector<struct xy> max_result;	
 int max_num = 0;
-struct xy coord;
-
-bool in_result(struct xy c2)
-{
-	for(auto c: result )
-		if( c.x == c2.x && c.y == c2.y)
-			return true;
-
-	return false;
-}
 
 bool cross2(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4) 
 {
@@ -48,15 +38,12 @@ bool cross2(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4)
     if (denominator == 0){
         if ( (x1*y2-x2*y1)*(x4-x3) - (x3*y4-x4*y3)*(x2-x1) == 0 && (x1*y2-x2*y1)*(y4-y3) - (x3*y4-x4*y3)*(y2-y1) == 0)
 		return true;
-            //cout << "Отрезки пересекаются";
-        //else cout << "Отрезки не пересекаются";
     }
     else{
         numerator_a=(x4-x2)*(y4-y3)-(x4-x3)*(y4-y2);
         numerator_b=(x1-x2)*(y4-y2)-(x4-x2)*(y1-y2);
         Ua=numerator_a/denominator;
         Ub=numerator_b/denominator;
-        //cout << (Ua >=0 && Ua <=1 && Ub >=0 && Ub <=1 ? "Отрезки пересекаются" : "Отрезки не пересекаются");
 	if(Ua >=0 && Ua <=1 && Ub >=0 && Ub <=1)
 		return true;
     }
@@ -66,7 +53,7 @@ bool cross2(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4)
 bool cross(struct xy c2)
 {
 	struct xy c1 = result.back();
-	int maxi = result.size()-2;
+	int maxi = result.size()-2; // -2 убираем из рассмотрения сам новый ход и тот ход, который пережд ним
 
 	for(int i=0; i<maxi ; i++)
 	{
@@ -88,7 +75,6 @@ void next()
 	struct xy c2;
 	bool new_hod;
 
-
 	for(int i =0; i<8 ; i++)
 	{
 		c1 = result.back();
@@ -103,10 +89,8 @@ void next()
 				c2.y < N 
 				&&
 				c2.y >= 0 
-				//&&
-				//!in_result(c2)
 				&&
-				!cross(c2)
+				!cross(c2) // Проверка что новый ход не образует пересечений с уже имеющимися
 			)
 		{
 			result.push_back(c2);
@@ -115,7 +99,7 @@ void next()
 		}
 	}
 
-	if(!new_hod)
+	if(!new_hod) // Новый ход без пересечений сделать невозможно
 	{
 		if(result.size() > max_num)
 		{
@@ -130,6 +114,7 @@ void next()
 int main()
 {
 	char buf[2];
+	struct xy coord;
 
 	cout << "Введите начальное расположение коня на доске: ";
 	cin >> buf;
